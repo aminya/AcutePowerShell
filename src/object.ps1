@@ -9,3 +9,12 @@ function props($InputObject) {
 }
 Export-ModuleMember -Function props
 
+
+# get property of an object
+# obj | get propname
+function get($property, $obj) {
+    if ($obj) { $input = $obj }
+  
+    $input | Select-Object -ExpandProperty $property
+}
+Export-ModuleMember -Function get
