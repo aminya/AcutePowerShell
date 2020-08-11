@@ -40,3 +40,20 @@ function Find-Symlink() {
   
 }
 Export-ModuleMember -Function Find-Symlink
+  
+# Set the target for a symbolik link
+# Set-Symlink-Target path target
+# Set-Symlink-Target ./folder1/mylink ./folder2/mylink
+function Set-Symlink-Target() {
+    
+    param(
+        [string]$Path,
+        [string]$Target
+    )
+  
+    New-Item -ItemType Junction -Path "__temp__" -Target $Target
+    Remove-Item $Path
+    Move-Item "__temp__" $Path
+}
+Export-ModuleMember -Function Set-Symlink-Target
+ 
