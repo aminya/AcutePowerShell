@@ -57,3 +57,35 @@ function Set-Symlink-Target() {
 }
 Export-ModuleMember -Function Set-Symlink-Target
  
+
+# Replaces the target of a symbolik link. It replaces the old part of the target with the new part
+# Replace-Symlink-Target path old new
+# Replace-Symlink-Target ./folder1/mylink folder1 folder2 
+function Replace-Symlink-Target() {
+    
+    param(
+        [string]$path,
+        [string]$old,
+        [string]$new
+    )
+  
+    $Current = Get-Item .
+    cd $path
+  
+    $allFiles = (Find-Symlink $path)
+    foreach ($file in $allFiles) {
+        $target = ($file | get target)
+        $name = ($file | get name)
+        if ($target -match $old) {
+            $target = ($target).replace($old, $new)
+            if (Test-Path $target) {
+                New-Item -ItemType Junction -Path "__temp__" -Target $target
+                Remove-Item $name
+                Move-Item "__temp__" $name
+            }
+        }
+    }
+  
+    cd $Current
+}
+Export-ModuleMember -Function Replace-Symlink-Target
