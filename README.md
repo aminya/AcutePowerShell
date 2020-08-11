@@ -60,27 +60,27 @@ whichall clang
 ### Symlink:
 
 - `Find-Symlink`
-Get the symbolik links in a folder
+Get the symbolic links in a folder
 ```ps1
 Find-Symlink .
 Find-Symlink . --recursive
 ```
 
-- `Set-Symlink-Target`
-Set the target for a symbolik link
+- `Set-SymlinkTarget`
+Set the target for a symbolic link
 ```ps1
-Set-Symlink-Target path target
-Set-Symlink-Target ./folder1/mylink ./folder2/mylink
+Set-SymlinkTarget path target
+Set-SymlinkTarget ./folder1/mylink ./folder2/mylink
 ```
 
-- `Replace-Symlink-Target`
-Replaces the target of a symbolik link. It replaces the old part of the target with the new part
+- `Replace-SymlinkTarget`
+Replaces the target of a symbolic link. It replaces the old part of the target with the new part
 ```ps1
-Replace-Symlink-Target path old new
-Replace-Symlink-Target ./folder1/mylink folder1 folder2 
+Replace-SymlinkTarget path old new
+Replace-SymlinkTarget ./folder1/mylink folder1 folder2
 ```
 
 ### Path:
 
-- `abspath`: 
-how-to-normalize-a-path-in-powershell
+- `abspath`:
+[normalize a path](https://stackoverflow.com/questions/495618/how-to-normalize-a-path-in-powershell)
