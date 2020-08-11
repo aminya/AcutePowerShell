@@ -7,3 +7,10 @@ function whichall($name) {
 }
 Export-ModuleMember -Function whichall
  
+# list only the first one
+# which clang
+function which($name) {
+    if ($name) { $input = $name }
+    Get-Command $input | Select-Object -ExpandProperty Path
+}
+Export-ModuleMember -Function which
