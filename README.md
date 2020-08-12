@@ -84,3 +84,23 @@ Replace-SymlinkTarget ./folder1/mylink folder1 folder2
 
 - `abspath`:
 [normalize a path](https://stackoverflow.com/questions/495618/how-to-normalize-a-path-in-powershell)
+
+# Benchmark
+
+- `btime`:
+Benchmark a script and return the ms it took. 
+it runs the script once
+```ps1
+btime { node -v }
+```
+
+- `benchmark`:
+Benchmark a script
+it runs the script 10 times
+```ps1
+benchmark { node -v }
+```
+
+- `Measure-These`:
+
+https://www.powershelladmin.com/wiki/PowerShell_benchmarking_module_built_around_Measure-Command
