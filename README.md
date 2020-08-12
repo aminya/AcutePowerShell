@@ -11,7 +11,7 @@ cd AcutePowerShell
 
 Now run the script:
 ```ps1
-./index.ps1
+Import-Module ./index.psm1 -DisableNameChecking
 ```
 
 ### Add it to your profile:
@@ -23,7 +23,7 @@ notepad $PROFILE
 
 Append the script to the profile
 ```ps1
-path-to-index/index.ps1
+Import-Module path-you-cloned-the-repo/index.psm1 -DisableNameChecking
 ```
 
 ## Functions
