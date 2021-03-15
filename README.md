@@ -118,3 +118,16 @@ Go to the root of the git repo and then:
 ```ps1
 git-rm-merged
 ```
+
+
+- `git-reset`:
+Git fetch and reset --hard
+
+```ps1
+git-reset
+```
+
+Specifying repo and branch:
+```ps1
+git-reset("upstream", "master")
+```

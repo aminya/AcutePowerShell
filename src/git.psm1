@@ -8,3 +8,15 @@ function git-rm-merged {
    Where-Object {-not ( $_ -Like "*master" )} |
    ForEach-Object { git branch -d $_ }
 }
+
+# Git fetch and reset --hard
+# git-reset
+# git-reset("upstream", "master")
+function git-reset {
+  param(
+    [string]$repo = "upstream",
+    [string]$branch = "master"
+  )
+  git fetch $repo
+  git reset --hard "$repo/$branch"
+}
