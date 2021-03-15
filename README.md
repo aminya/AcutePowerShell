@@ -88,7 +88,7 @@ Replace-SymlinkTarget ./folder1/mylink folder1 folder2
 # Benchmark
 
 - `btime`:
-Benchmark a script and return the ms it took. 
+Benchmark a script and return the time it took.
 it runs the script once
 ```ps1
 btime { node -v }
@@ -96,11 +96,25 @@ btime { node -v }
 
 - `benchmark`:
 Benchmark a script
-it runs the script 10 times
 ```ps1
 benchmark { node -v }
+```
+
+You can change the count number by passing a number as the 2nd parameter
+```ps1
+benchmark { node -v } 20
 ```
 
 - `Measure-These`:
 
 https://www.powershelladmin.com/wiki/PowerShell_benchmarking_module_built_around_Measure-Command
+
+# Git:
+
+- `git-rm-merged`:
+Remove the merged git branch
+
+Go to the root of the git repo and then:
+```ps1
+git-rm-merged
+```

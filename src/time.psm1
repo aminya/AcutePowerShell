@@ -16,7 +16,7 @@ Export-ModuleMember -Function btime
 # Benchmark a script
 # it runs the script 10 times
 # benchmark { node -v }
-# You can change the count number by passing a number as the 2nd paramaeter
+# You can change the count number by passing a number as the 2nd parameter
 function benchmark() {
     param(
         [ScriptBlock]$script,
