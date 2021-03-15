@@ -16,10 +16,12 @@ Export-ModuleMember -Function btime
 # Benchmark a script
 # it runs the script 10 times
 # benchmark { node -v }
+# You can change the count number by passing a number as the 2nd paramaeter
 function benchmark() {
     param(
-        [ScriptBlock]$ScriptBlock
+        [ScriptBlock]$script,
+        [int]$count = 10
     )
-    Measure-These -Count 10 -ScriptBlock $ScriptBlock
+    Measure-These -Count $count -ScriptBlock $script
 }
 Export-ModuleMember -Function benchmark
