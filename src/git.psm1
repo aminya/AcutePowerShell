@@ -20,3 +20,16 @@ function git-reset {
   git fetch $repo
   git reset --hard "$repo/$branch"
 }
+
+# rebase current branch with remote branch
+# git-up [remote=upstream] [branch=master]
+function git-up {
+  param(
+    [string]$remote = "upstream",
+    [string]$branch = "master"
+  )
+  git fetch $remote
+  git rebase "$remote/$repo"
+}
+
+

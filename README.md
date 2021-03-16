@@ -131,3 +131,15 @@ Specifying repo and branch:
 ```ps1
 git-reset("upstream", "master")
 ```
+
+- `git-up`:
+rebase current branch with remote branch
+git-up [remote=upstream] [branch=master]
+
+```ps1
+git-up
+```
+
+```ps1
+git-up origin master
+```
