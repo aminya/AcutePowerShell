@@ -5,3 +5,8 @@ function ls_size($folder) {
 }
 Export-ModuleMember -Function ls_size
 
+# Dump a binary
+function dump_bin($file) {
+    dumpbin.exe -all $file | out-file ($file + ".txt")
+}
+Export-ModuleMember -Function dump_bin
