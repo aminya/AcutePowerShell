@@ -18,3 +18,22 @@ function dump_bin($file) {
     dumpbin.exe -all $file | out-file ($file + ".txt")
 }
 Export-ModuleMember -Function dump_bin
+
+# broot extension
+function br {
+    $outcmd = new-temporaryfile
+    broot.exe --outcmd $outcmd $args
+    if (!$?) {
+        remove-item -force $outcmd
+        return $lastexitcode
+    }
+
+    $command = get-content $outcmd
+    if ($command) {
+        # workaround - paths have some garbage at the start
+        $command = $command.replace("\\?\", "", 1)
+        invoke-expression $command
+    }
+    remove-item -force $outcmd
+} 
+Export-ModuleMember -Function br
