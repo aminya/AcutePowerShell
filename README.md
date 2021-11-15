@@ -143,3 +143,16 @@ git-up
 ```ps1
 git-up origin master
 ```
+
+# Media
+
+-`video-replace-audio`:
+Batch replace the audio of video files in the current folder
+
+```ps1
+video-replace-audio
+```
+
+```ps1
+video-replace-audio mp4 mp3
+```
