@@ -6,3 +6,5 @@ Import-Module -Name $PSScriptRoot/src/time.psm1 -DisableNameChecking
 Import-Module -Name $PSScriptRoot/src/git.psm1 -DisableNameChecking
 Import-Module -Name $PSScriptRoot/src/fs.psm1 -DisableNameChecking
 Import-Module -Name $PSScriptRoot/src/media.psm1 -DisableNameChecking
+Import-Module -Name $PSScriptRoot/src/extensions.psm1 -DisableNameChecking
+Import-Module -Name $PSScriptRoot/src/network.psm1 -DisableNameChecking
