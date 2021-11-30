@@ -1,3 +1,11 @@
+function rmrf($path) {
+    if (test-path $path) { 
+        rm -r -force $path 
+    }
+}
+Export-ModuleMember -Function rmrf
+
+
 # Get the size of the files in a folder
 function ls_size($folder, $exclude) {
     # https://www.spguides.com/check-file-size-using-powershell/
