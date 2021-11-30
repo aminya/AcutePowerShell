@@ -24,6 +24,12 @@ if (!(Get-Module -ListAvailable -Name UnixLike)) {
 }
 Import-Module -Name UnixLike
 
+if (!(Get-Module -ListAvailable -Name Find-String)) {
+    Install-Module -Name Find-String
+}
+Import-Module -Name Find-String
+new-alias -Name ack -Value Find-String
+
 
 # experimental features
 if (![ExperimentalFeature]::IsEnabled("Microsoft.PowerShell.Utility.PSManageBreakpointsInRunspace")) { Enable-ExperimentalFeature Microsoft.PowerShell.Utility.PSManageBreakpointsInRunspace }
