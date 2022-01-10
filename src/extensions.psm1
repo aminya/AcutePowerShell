@@ -32,7 +32,6 @@ new-alias -Name ack -Value Find-String
 
 
 # experimental features
-if (![ExperimentalFeature]::IsEnabled("Microsoft.PowerShell.Utility.PSManageBreakpointsInRunspace")) { Enable-ExperimentalFeature Microsoft.PowerShell.Utility.PSManageBreakpointsInRunspace }
 if (![ExperimentalFeature]::IsEnabled("PSCommandNotFoundSuggestion")) { Enable-ExperimentalFeature PSCommandNotFoundSuggestion }
 if (![ExperimentalFeature]::IsEnabled("PSNativePSPathResolution")) { Enable-ExperimentalFeature PSNativePSPathResolution }
 if (![ExperimentalFeature]::IsEnabled("PSSubsystemPluginModel")) { Enable-ExperimentalFeature PSSubsystemPluginModel }

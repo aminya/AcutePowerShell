@@ -29,10 +29,37 @@ notepad $PROFILE
 Append the script to the profile
 
 ```ps1
-Import-Module path-you-cloned-the-repo/index.psm1 -DisableNameChecking
+Import-Module "path-you-cloned-the-repo/index.psm1" -DisableNameChecking
 ```
 
-## Functions
+# List of the commands this add:
+```
+props
+get
+which
+whichall
+rmrf
+ls_size
+dump_bin
+br
+find_symlink
+set_symlink_target
+replace_symlink_target
+abspath
+wget
+btime
+benchmark
+git_rm_merged
+git_reset
+git_up
+video_replace_audio
+video_extract_audio
+cmake_configure
+cmake_build
+```
+
+
+# Documentation
 
 Now the following functions are available in your session:
 
@@ -70,28 +97,28 @@ whichall clang
 
 ### Symlink:
 
-- `Find-Symlink`
+- `find_symlink`
   Get the symbolic links in a folder
 
 ```ps1
-Find-Symlink .
-Find-Symlink . --recursive
+find_symlink .
+find_symlink . --recursive
 ```
 
-- `Set-SymlinkTarget`
+- `set_symlink_target`
   Set the target for a symbolic link
 
 ```ps1
-Set-SymlinkTarget path target
-Set-SymlinkTarget ./folder1/mylink ./folder2/mylink
+set_symlink_target path target
+set_symlink_target ./folder1/mylink ./folder2/mylink
 ```
 
-- `Replace-SymlinkTarget`
+- `replace_symlink_target`
   Replaces the target of a symbolic link. It replaces the old part of the target with the new part
 
 ```ps1
-Replace-SymlinkTarget path old new
-Replace-SymlinkTarget ./folder1/mylink folder1 folder2
+replace_symlink_target path old new
+replace_symlink_target ./folder1/mylink folder1 folder2
 ```
 
 ### Path:
@@ -128,61 +155,61 @@ https://www.powershelladmin.com/wiki/PowerShell_benchmarking_module_built_around
 
 # Git:
 
-- `git-rm-merged`:
+- `git_rm_merged`:
   Remove the merged git branch
 
 Go to the root of the git repo and then:
 
 ```ps1
-git-rm-merged
+git_rm_merged
 ```
 
-- `git-reset`:
+- `git_reset`:
   Git fetch and reset --hard
 
 ```ps1
-git-reset
+git_reset
 ```
 
 Specifying repo and branch:
 
 ```ps1
-git-reset("upstream", "master")
+git_reset("upstream", "master")
 ```
 
-- `git-up`:
+- `git_up`:
   rebase current branch with remote branch
-  git-up [remote=upstream] [branch=master]
+  git_up [remote=upstream] [branch=master]
 
 ```ps1
-git-up
+git_up
 ```
 
 ```ps1
-git-up origin master
+git_up origin master
 ```
 
 # Media
 
--`video-replace-audio`:
+-`video_replace_audio`:
 Batch replace the audio of video files in the current folder
 
 ```ps1
-video-replace-audio
+video_replace_audio
 ```
 
 ```ps1
-video-replace-audio mp4 mp3
+video_replace_audio mp4 mp3
 ```
 
--`video-extract-audio`:
+-`video_extract_audio`:
 
 Batch extract the audio of video files in the current folder
 
 ```ps1
-video-extract-audio
+video_extract_audio
 ```
 
 ```ps1
-video-extract-audio mp4 mp3
+video_extract_audio mp4 mp3
 ```

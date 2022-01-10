@@ -1,5 +1,5 @@
 # Batch replace the audio of video files in the current folder
-function video-replace-audio($video_extension = "mp4", $audio_extension = "mp3") {
+function video_replace_audio($video_extension = "mp4", $audio_extension = "mp3") {
     # This uses ffmpeg https://www.ffmpeg.org/
     # modify the video and audio extensions if needed
 
@@ -19,9 +19,10 @@ function video-replace-audio($video_extension = "mp4", $audio_extension = "mp3")
         # Not specifying an audio codec, will automatically select a working one. You can specify one by for example adding -c:a libvorbis after -c:v copy. You can also use -c copy to avoid re-encoding the audio, but this has lead to compatibility and synchronization problems in my past.
     }
 }
+Export-ModuleMember -Function video_replace_audio
 
 # Batch extract the audio of video files in the current folder
-function video-extract-audio($video_extension = "mp4", $audio_extension = "mp3") {
+function video_extract_audio($video_extension = "mp4", $audio_extension = "mp3") {
     # This uses ffmpeg https://www.ffmpeg.org/
     # modify the video and audio extensions if needed
 
@@ -37,3 +38,4 @@ function video-extract-audio($video_extension = "mp4", $audio_extension = "mp3")
         # -acodec copy says use the same audio stream that's already in there.
     }
 }
+Export-ModuleMember -Function video_extract_audio

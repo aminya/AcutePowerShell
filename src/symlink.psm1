@@ -1,9 +1,9 @@
 
 # Get the symbolic links in a folder
 # example:
-# Find-Symlink .
-# Find-Symlink . --recursive
-function Find-Symlink() {
+# find_symlink .
+# find_symlink . --recursive
+function find_symlink() {
 
     [CmdletBinding()]
 
@@ -39,12 +39,12 @@ function Find-Symlink() {
     cd $Current
 
 }
-Export-ModuleMember -Function Find-Symlink
+Export-ModuleMember -Function find_symlink
 
 # Set the target for a symbolic link
-# Set-SymlinkTarget path target
-# Set-SymlinkTarget ./folder1/mylink ./folder2/mylink
-function Set-SymlinkTarget() {
+# set_symlink_target path target
+# set_symlink_target ./folder1/mylink ./folder2/mylink
+function set_symlink_target() {
 
     param(
         [string]$Path,
@@ -55,13 +55,13 @@ function Set-SymlinkTarget() {
     Remove-Item $Path
     Move-Item "__temp__" $Path
 }
-Export-ModuleMember -Function Set-SymlinkTarget
+Export-ModuleMember -Function set_symlink_target
 
 
 # Replaces the target of a symbolic link. It replaces the old part of the target with the new part
-# Replace-SymlinkTarget path old new
-# Replace-SymlinkTarget ./folder1/mylink folder1 folder2
-function Replace-SymlinkTarget() {
+# replace_symlink_target path old new
+# replace_symlink_target ./folder1/mylink folder1 folder2
+function replace_symlink_target() {
 
     param(
         [string]$path,
@@ -72,7 +72,7 @@ function Replace-SymlinkTarget() {
     $Current = Get-Item .
     cd $path
 
-    $allFiles = (Find-Symlink $path)
+    $allFiles = (find_symlink $path)
     foreach ($file in $allFiles) {
         $target = ($file | get target)
         $name = ($file | get name)
@@ -88,4 +88,4 @@ function Replace-SymlinkTarget() {
 
     cd $Current
 }
-Export-ModuleMember -Function Replace-SymlinkTarget
+Export-ModuleMember -Function replace_symlink_target

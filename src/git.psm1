@@ -1,7 +1,7 @@
 # Remove the merged git branch
 # Go to the root of the git repo and then:
-# git-rm-merged
-function git-rm-merged {
+# git_rm_merged
+function git_rm_merged {
  git branch --merged |
    ForEach-Object { $_.Trim() } |
    Where-Object {$_ -NotMatch "^\*"} |
@@ -10,9 +10,9 @@ function git-rm-merged {
 }
 
 # Git fetch and reset --hard
-# git-reset
-# git-reset("upstream", "master")
-function git-reset {
+# git_reset
+# git_reset("upstream", "master")
+function git_reset {
   param(
     [string]$repo = "upstream",
     [string]$branch = "master"
@@ -22,8 +22,8 @@ function git-reset {
 }
 
 # rebase current branch with remote branch
-# git-up [remote=upstream] [branch=master]
-function git-up {
+# git_up [remote=upstream] [branch=master]
+function git_up {
   param(
     [string]$remote = "upstream",
     [string]$branch = "master"
