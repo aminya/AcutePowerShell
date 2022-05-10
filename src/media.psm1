@@ -26,13 +26,13 @@ function video_extract_audio($video_extension = "mp4", $audio_extension = "mp3")
     # This uses ffmpeg https://www.ffmpeg.org/
     # modify the video and audio extensions if needed
 
-    mkdir -p output_audios/
+    mkdir -p output_audio/
 
     foreach ($video in (ls *.$video_extension)) {
         $video_name = ($video).Name;
         $audio_name = $video_name.replace($video_extension, $audio_extension);
     
-        ffmpeg -i $video_name -vn -acodec copy "output_audios/$audio_name"
+        ffmpeg -i $video_name -vn -acodec copy "output_audio/$audio_name"
         # https://stackoverflow.com/a/27413824/7910299
         # -vn is no video.
         # -acodec copy says use the same audio stream that's already in there.
