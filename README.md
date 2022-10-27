@@ -32,7 +32,7 @@ Append the script to the profile
 Import-Module "path-you-cloned-the-repo/index.psm1" -DisableNameChecking
 ```
 
-# List of the commands this add:
+# Commands
 ```
 props
 get
