@@ -33,10 +33,7 @@ new-alias -Name ack -Value Find-String
 
 # experimental features
 if (![ExperimentalFeature]::IsEnabled("PSCommandNotFoundSuggestion")) { Enable-ExperimentalFeature PSCommandNotFoundSuggestion }
-if (![ExperimentalFeature]::IsEnabled("PSNativePSPathResolution")) { Enable-ExperimentalFeature PSNativePSPathResolution }
 if (![ExperimentalFeature]::IsEnabled("PSSubsystemPluginModel")) { Enable-ExperimentalFeature PSSubsystemPluginModel }
-if (![ExperimentalFeature]::IsEnabled("PSNativeCommandArgumentPassing")) { Enable-ExperimentalFeature PSNativeCommandArgumentPassing }
-if (![ExperimentalFeature]::IsEnabled("PSAnsiRenderingFileInfo")) { Enable-ExperimentalFeature PSAnsiRenderingFileInfo }
 if (![ExperimentalFeature]::IsEnabled("PSLoadAssemblyFromNativeCode")) { Enable-ExperimentalFeature PSLoadAssemblyFromNativeCode }
 
 new-alias -Name sudo -Value gsudo
