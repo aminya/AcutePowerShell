@@ -3,11 +3,6 @@ if (!(Get-Module -ListAvailable -Name Native)) {
 }
 Import-Module Native
 
-if (!(Get-Module -ListAvailable -Name posh-git)) {
-    Install-Module -Name posh-git
-}
-Import-Module posh-git
-
 if (!(Get-Module -ListAvailable -Name oh-my-posh)) {
     Install-Module -Name oh-my-posh
 }
