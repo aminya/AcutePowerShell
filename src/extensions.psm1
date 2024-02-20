@@ -3,11 +3,6 @@ if (!(Get-Module -ListAvailable -Name Native)) {
 }
 Import-Module Native
 
-if (!(Get-Module -ListAvailable -Name oh-my-posh)) {
-    Install-Module -Name oh-my-posh
-}
-Set-PoshPrompt -Theme paradox
-
 # https://www.powershellgallery.com/packages/modern-unix-win/
 if (!(Get-Module -ListAvailable -Name modern-unix-win)) {
     Install-Module -Name modern-unix-win
@@ -32,3 +27,6 @@ if (![ExperimentalFeature]::IsEnabled("PSSubsystemPluginModel")) { Enable-Experi
 if (![ExperimentalFeature]::IsEnabled("PSLoadAssemblyFromNativeCode")) { Enable-ExperimentalFeature PSLoadAssemblyFromNativeCode }
 
 new-alias -Name sudo -Value gsudo
+
+cp "./src/starship.toml" "~/.config/starship.toml"
+Invoke-Expression (& "C:\Program Files\starship\bin\starship" init powershell)

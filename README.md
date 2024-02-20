@@ -2,6 +2,14 @@
 
 Various PowerShell scripts
 
+## Dependencies
+
+Install starship via winget
+
+```
+winget install --id Starship.Starship
+```
+
 ## Usage:
 
 Clone the repository
