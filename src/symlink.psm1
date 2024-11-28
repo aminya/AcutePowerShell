@@ -89,3 +89,48 @@ function replace_symlink_target() {
     cd $Current
 }
 Export-ModuleMember -Function replace_symlink_target
+
+function find_invalid_symlinks
+{
+    param (
+        [string]$folderPath
+    )
+
+    # Get all symbolic links in the folder
+    $symlinks = Get-ChildItem -Path $folderPath -Recurse -Attributes ReparsePoint
+
+    # Check each symlink to see if its target is valid
+    foreach ($symlink in $symlinks)
+    {
+        # Resolve the target of the symlink
+        $targetPath = (Get-Item $symlink.FullName).Target
+        if (-not (Test-Path $targetPath))
+        {
+            Write-Output "$($symlink.FullName)"
+        }
+    }
+}
+Export-ModuleMember -Function find_invalid_symlinks
+
+function remove_invalid_symlinks
+{
+    param (
+        [string]$folderPath
+    )
+
+    # Get all symbolic links in the folder
+    $symlinks = Get-ChildItem -Path $folderPath -Recurse -Attributes ReparsePoint
+
+    # Check each symlink to see if its target is valid
+    foreach ($symlink in $symlinks)
+    {
+        # Resolve the target of the symlink
+        $targetPath = (Get-Item $symlink.FullName).Target
+        if (-not (Test-Path $targetPath))
+        {
+            echo "Removing $($symlink.FullName)"
+            Remove-Item "$($symlink.FullName)"
+        }
+    }
+}
+Export-ModuleMember -Function remove_invalid_symlinks
