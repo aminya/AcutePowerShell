@@ -1,3 +1,8 @@
+# if a dumb terminal, exit
+if ($env:TERM -eq 'dumb') {
+    return
+}
+
 # if config does not exist, copy it
 if (!(Test-Path -Path "~/.config/starship.toml"))
 {
