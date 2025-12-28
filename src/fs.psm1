@@ -1,6 +1,6 @@
 function rmrf($path) {
-    if (test-path $path) { 
-        rm -r -force $path 
+    if (test-path $path) {
+        rm -r -force $path
     }
 }
 Export-ModuleMember -Function rmrf
@@ -43,5 +43,27 @@ function br {
         invoke-expression $command
     }
     remove-item -force $outcmd
-} 
+}
 Export-ModuleMember -Function br
+
+function rm_empty_folders($path = ".") {
+    # Get all directories recursively, excluding .git folders
+    $directories = Get-ChildItem -Path $path -Directory -Recurse -Force | Where-Object { $_.Name -ne ".git" }
+
+    # Filter directories that are empty (no items inside)
+    $emptyDirectories = $directories | Where-Object { (Get-ChildItem $_.FullName -Force | Measure-Object).Count -eq 0 }
+
+    # Display results and delete empty folders
+    if ($emptyDirectories.Count -gt 0) {
+        Write-Host "Found $($emptyDirectories.Count) empty folder(s):" -ForegroundColor Yellow
+        $emptyDirectories | ForEach-Object {
+            $relativePath = $_.FullName | Resolve-Path -Relative
+            Write-Host "Deleting: $relativePath"
+            Remove-Item $_.FullName -Force -Recurse
+        }
+        Write-Host "Successfully deleted $($emptyDirectories.Count) empty folder(s)" -ForegroundColor Green
+    } else {
+        Write-Host "No empty folders found in the current directory and subdirectories." -ForegroundColor Green
+    }
+}
+Export-ModuleMember -Function rm_empty_folders
