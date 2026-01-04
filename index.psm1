@@ -11,3 +11,4 @@ Import-Module -Name $PSScriptRoot/src/cmake.psm1 -DisableNameChecking
 Import-Module -Name $PSScriptRoot/src/starship.psm1 -DisableNameChecking
 Import-Module -Name $PSScriptRoot/src/exec.psm1 -DisableNameChecking
 Import-Module -Name $PSScriptRoot/src/unix.psm1 -DisableNameChecking
+Import-Module -Name $PSScriptRoot/src/vscode.psm1 -DisableNameChecking
