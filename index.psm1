@@ -15,3 +15,4 @@ Import-Module -Name $PSScriptRoot/src/vscode.psm1 -DisableNameChecking
 Import-Module -Name $PSScriptRoot/src/shortcuts.psm1 -DisableNameChecking
 Import-Module -Name $PSScriptRoot/src/msvc.psm1 -DisableNameChecking
 Import-Module -Name $PSScriptRoot/src/ai.psm1 -DisableNameChecking
+Import-Module -Name $PSScriptRoot/src/xodo.psm1 -DisableNameChecking
