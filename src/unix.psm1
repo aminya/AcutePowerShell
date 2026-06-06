@@ -9,22 +9,17 @@ Import-Module -Name modern-unix-win
 # install via choco
 new-alias -Name sudo -Value gsudo
 
-# install coreutils via winget
-if (!(Get-Command "coreutils" -ErrorAction SilentlyContinue)) {
-    winget install uutils.coreutils
+# If Git installed add it to path
+# C:\Program Files\Git\usr\bin\whoami.exe
+if (Test-Path "C:\Program Files\Git\usr\bin\whoami.exe") {
+    $env:Path += ";C:\Program Files\Git\usr\bin"
+    [System.Environment]::SetEnvironmentVariable('Path', $env:Path, [System.EnvironmentVariableTarget]::Process)
 }
 
-# Coreutils aliases
+# coreutils from winget
+if ((Test-Path "$env:LOCALAPPDATA\Microsoft\WinGet\Links\")) {
+    # add to path
+    $env:Path += ";$env:LOCALAPPDATA\Microsoft\WinGet\Links"
+    [System.Environment]::SetEnvironmentVariable('Path', $env:Path, [System.EnvironmentVariableTarget]::Process)
+}
 
-# from posh-alias https://www.powershellgallery.com/packages/posh-alias/1.0 Apache-2.0
-function Add-Alias($name, $alias) {
-    $func = @"
-function global:$name {
-    `$expr = ('$alias ' + (( `$args | % { if (`$_.GetType().FullName -eq "System.String") { "``"`$(`$_.Replace('``"','````"').Replace("'","``'"))``"" } else { `$_ } } ) -join ' '))
-    write-debug "Expression: `$expr"
-    Invoke-Expression `$expr
-}
-"@
-    write-debug "Defined function:`n$func"
-    $func | iex
-}
