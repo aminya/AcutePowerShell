@@ -45,7 +45,6 @@ Import-Module "path-you-cloned-the-repo/index.psm1" -DisableNameChecking
 props
 get
 which
-whichall
 rmrf
 ls_size
 dump_bin
@@ -94,13 +93,6 @@ obj | get propname
 
 ```ps1
 which clang
-```
-
-- `whichall`:
-  lists all of the programs
-
-```ps1
-whichall clang
 ```
 
 ### Symlink:

@@ -1,16 +1,18 @@
 
-# lists all of the programs
-# whichall clang
-function whichall($name) {
-    if ($name) { $input = $name }
-    where.exe $input
-}
-Export-ModuleMember -Function whichall
- 
-# list only the first one
+# list only the first one (or all with -a)
 # which clang
-function which($name) {
-    if ($name) { $input = $name }
-    Get-Command $input | Select-Object -ExpandProperty Path
+# which -a clang
+function which {
+    param(
+        [switch]$a,
+        [Parameter(ValueFromPipeline=$true, Position=0)]
+        [string]$name
+    )
+    if (-not $name) { $name = $input }
+    if ($a) {
+        where.exe $name
+    } else {
+        Get-Command $name | Select-Object -ExpandProperty Path -First 1
+    }
 }
 Export-ModuleMember -Function which
