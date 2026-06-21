@@ -4,3 +4,5 @@ function enable_msvc() {
     cd $ORIG_PWD
 }
 Export-ModuleMember -Function enable_msvc
+
+enable_msvc
