@@ -7,7 +7,9 @@ Import-Module -Name modern-unix-win
 
 # https://www.powershellgallery.com/packages/gsudo/ (gsudo, sudo)
 # install via choco
-new-alias -Name sudo -Value gsudo
+if (!(Get-Command sudo -ErrorAction SilentlyContinue)) {
+    new-alias -Name sudo -Value gsudo
+}
 
 # If Git installed add it to path
 # C:\Program Files\Git\usr\bin\whoami.exe
