@@ -1,9 +1,13 @@
-function cleanup_vscode_extensions
-{
+function cleanup_vscode_extensions {
     param (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$FolderPath
     )
+
+    # Ensure the folder name is extensions
+    if ($FolderPath -notlike "*\extensions") {
+        $FolderPath = Join-Path $FolderPath "extensions"
+    }
 
     # Get all subfolders in the specified directory
     $subfolders = Get-ChildItem -Path $FolderPath -Directory
@@ -12,7 +16,6 @@ function cleanup_vscode_extensions
     $folderNameHash = @{}
 
     foreach ($folder in $subfolders) {
-
         $Shrink_Folder_Name_Length = [math]::Ceiling($folder.Name.Length * 0.10)
         $Shrink_Folder_Name_Length = $folder.Name.Length - $Shrink_Folder_Name_Length
         $key = $folder.Name.Substring(0, [Math]::Min($Shrink_Folder_Name_Length, $folder.Name.Length))
@@ -45,10 +48,6 @@ function cleanup_vscode_extensions
             }
         }
     }
-
-    write-host ""
-    write-host ""
-    write-host ""
 
     # Delete the folders in $foldersToDelete
     foreach ($folder in $foldersToDelete) {
