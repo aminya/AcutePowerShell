@@ -20,6 +20,8 @@ function enable_msvc_2022() {
         Enter-VsDevShell -Arch "amd64" -HostArch "amd64" -VsInstallPath 'C:/Program Files/Microsoft Visual Studio/2022/Community/';
     }
     cd "$ORIG_PWD"
+
+    $env:VCPKG_VISUAL_STUDIO_PATH="C:/Program Files/Microsoft Visual Studio/2022/Community"
 }
 Export-ModuleMember -Function enable_msvc_2022
 
@@ -45,6 +47,8 @@ function enable_msvc_18() {
         Enter-VsDevShell -Arch "amd64" -HostArch "amd64" -VsInstallPath 'C:/Program Files/Microsoft Visual Studio/18/Community/';
     }
     cd "$ORIG_PWD"
+
+    $env:VCPKG_VISUAL_STUDIO_PATH="C:/Program Files/Microsoft Visual Studio/18/Community"
 }
 Export-ModuleMember -Function enable_msvc_18
 
