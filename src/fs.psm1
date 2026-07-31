@@ -10,10 +10,10 @@ Export-ModuleMember -Function rmrf
 function ls_size($folder, $exclude) {
     # https://www.spguides.com/check-file-size-using-powershell/
     $files = Get-ChildItem $folder -recurse -exclude $exclude
-    $files | Select-Object Name, @{Name="KiloBytes";Expression={"{0:F3}" -f ($_.length/1KB)}}
+    $files | Select-Object Name, @{Name = "KiloBytes"; Expression = { "{0:F3}" -f ($_.length / 1KB) } }
 
     $sum = 0.0
-    foreach($file in $files) {
+    foreach ($file in $files) {
         $sum += $file.length
     }
     echo "---------------------"
@@ -62,8 +62,36 @@ function rm_empty_folders($path = ".") {
             Remove-Item $_.FullName -Force -Recurse
         }
         Write-Host "Successfully deleted $($emptyDirectories.Count) empty folder(s)" -ForegroundColor Green
-    } else {
+    }
+    else {
         Write-Host "No empty folders found in the current directory and subdirectories." -ForegroundColor Green
     }
 }
 Export-ModuleMember -Function rm_empty_folders
+
+function fold_subfolder {
+    [CmdletBinding(SupportsShouldProcess)]
+    param(
+        [Parameter(Mandatory = $true, Position = 0)]
+        [string]$target
+    )
+
+    do {
+        $changed = $false
+        Get-ChildItem -Path $target -Recurse -Directory | ForEach-Object {
+            $dir = $_
+            $items = Get-ChildItem -Path $dir.FullName
+            if ($items.Count -eq 1 -and $items[0].PSIsContainer) {
+                $childDir = $items[0]
+
+                if ($PSCmdlet.ShouldProcess($childDir.FullName, "Move contents to $($dir.FullName) and remove directory")) {
+                    Get-ChildItem -Path $childDir.FullName -Force | Move-Item -Destination $dir.FullName -Force
+                    Remove-Item -Path $childDir.FullName -Recurse -Force
+                    $changed = $true
+                }
+            }
+        }
+    } while ($changed)
+}
+
+Export-ModuleMember -Function fold_subfolder
