@@ -25,3 +25,9 @@ if ((Test-Path "$env:LOCALAPPDATA\Microsoft\WinGet\Links\")) {
     [System.Environment]::SetEnvironmentVariable('Path', $env:Path, [System.EnvironmentVariableTarget]::Process)
 }
 
+# Git sh and bash aliases
+function sh { & "C:\Program Files\Git\bin\sh.exe" @args }
+function bash { & "C:\Program Files\Git\bin\bash.exe" @args }
+
+Export-ModuleMember -Function bash
+Export-ModuleMember -Function sh
