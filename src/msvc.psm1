@@ -16,8 +16,8 @@ function enable_msvc_2022() {
     }
 
     & {
-        Import-Module 'C:/Program Files/Microsoft Visual Studio/2022/Community/Common7\Tools\Microsoft.VisualStudio.DevShell.dll'; 
-        Enter-VsDevShell -Arch "amd64" -HostArch "amd64" -VsInstallPath 'C:/Program Files/Microsoft Visual Studio/2022/Community/';
+        Import-Module 'C:/Program Files/Microsoft Visual Studio/2022/Community/Common7\Tools\Microsoft.VisualStudio.DevShell.dll';
+        $null = Enter-VsDevShell -Arch "amd64" -HostArch "amd64" -VsInstallPath 'C:/Program Files/Microsoft Visual Studio/2022/Community/';
     }
     cd "$ORIG_PWD"
 
@@ -43,8 +43,8 @@ function enable_msvc_18() {
     }
 
     & {
-        Import-Module 'C:/Program Files/Microsoft Visual Studio/18/Community/Common7\Tools\Microsoft.VisualStudio.DevShell.dll'; 
-        Enter-VsDevShell -Arch "amd64" -HostArch "amd64" -VsInstallPath 'C:/Program Files/Microsoft Visual Studio/18/Community/';
+        Import-Module 'C:/Program Files/Microsoft Visual Studio/18/Community/Common7\Tools\Microsoft.VisualStudio.DevShell.dll';
+        $null = Enter-VsDevShell -Arch "amd64" -HostArch "amd64" -VsInstallPath 'C:/Program Files/Microsoft Visual Studio/18/Community/';
     }
     cd "$ORIG_PWD"
 
