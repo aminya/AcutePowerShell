@@ -1,5 +1,6 @@
 function enable_msvc_2022() {
     $ORIG_PWD = "$PWD"
+    $ORIG_VCPKG_ROOT = "$env:VCPKG_ROOT"
 
     # When pwsh is launched from a bash shell (e.g. Git Bash) that exported
     # functions via `export -f`, bash passes them down as environment variables
@@ -21,12 +22,19 @@ function enable_msvc_2022() {
     }
     cd "$ORIG_PWD"
 
-    $env:VCPKG_VISUAL_STUDIO_PATH="C:/Program Files/Microsoft Visual Studio/2022/Community"
+    # unset vcpkg
+    if ($ORIG_VCPKG_ROOT) {
+        $env:VCPKG_ROOT = $ORIG_VCPKG_R
+    }
+    else {
+        $env:VCPKG_VISUAL_STUDIO_PATH = "C:/Program Files/Microsoft Visual Studio/2022/Community"
+    }
 }
 Export-ModuleMember -Function enable_msvc_2022
 
 function enable_msvc_18() {
     $ORIG_PWD = "$PWD"
+    $ORIG_VCPKG_ROOT = "$env:VCPKG_ROOT"
 
     # When pwsh is launched from a bash shell (e.g. Git Bash) that exported
     # functions via `export -f`, bash passes them down as environment variables
@@ -48,7 +56,13 @@ function enable_msvc_18() {
     }
     cd "$ORIG_PWD"
 
-    $env:VCPKG_VISUAL_STUDIO_PATH="C:/Program Files/Microsoft Visual Studio/18/Community"
+    # unset vcpkg
+    if ($ORIG_VCPKG_ROOT) {
+        $env:VCPKG_ROOT = $ORIG_VCPKG_R
+    }
+    else {
+        $env:VCPKG_VISUAL_STUDIO_PATH = "C:/Program Files/Microsoft Visual Studio/18/Community"
+    }
 }
 Export-ModuleMember -Function enable_msvc_18
 
