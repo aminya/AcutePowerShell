@@ -10,6 +10,7 @@ Import-Module -Name $PSScriptRoot/src/network.psm1 -DisableNameChecking
 Import-Module -Name $PSScriptRoot/src/object.psm1 -DisableNameChecking
 Import-Module -Name $PSScriptRoot/src/path.psm1 -DisableNameChecking
 Import-Module -Name $PSScriptRoot/src/shortcuts.psm1 -DisableNameChecking
+Import-Module -Name $PSScriptRoot/src/sql.psm1 -DisableNameChecking
 Import-Module -Name $PSScriptRoot/src/starship.psm1 -DisableNameChecking
 Import-Module -Name $PSScriptRoot/src/symlink.psm1 -DisableNameChecking
 Import-Module -Name $PSScriptRoot/src/time.psm1 -DisableNameChecking
