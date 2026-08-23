@@ -1,13 +1,9 @@
 function create_shortcuts() {
+    [CmdletBinding(SupportsShouldProcess)]
     param(
         [string]$SourceFolder,
-        [string]$TargetFolder,
-        [switch]$DryRun
+        [string]$TargetFolder
     )
-
-    if ($DryRun) {
-        Write-Host "[DRY RUN MODE] No changes will be made" -ForegroundColor Yellow
-    }
 
     # get basename of the source folder
     $SourceFolderBaseName = (Get-Item $SourceFolder).BaseName
@@ -17,12 +13,15 @@ function create_shortcuts() {
         $TargetFolder = [Environment]::GetFolderPath("StartMenu") + "\Programs\"
     }
 
-    if (-not (Test-Path -Path $TargetFolder)) {
-        if ($DryRun) {
-            Write-Host "[DRY RUN] Would create directory: $TargetFolder"
-        } else {
+    if (-not (Test-Path -LiteralPath $TargetFolder -PathType Container)) {
+        if ($PSCmdlet.ShouldProcess($TargetFolder, "Create target directory")) {
             New-Item -ItemType Directory -Force -Path $TargetFolder
         }
+    }
+
+    # Remove stale empty folders before checking existing shortcut targets.
+    if (Test-Path -LiteralPath $TargetFolder -PathType Container) {
+        rm_empty_folders -path $TargetFolder -WhatIf:$WhatIfPreference
     }
 
     # Excluded folder names (case-insensitive)
@@ -81,7 +80,9 @@ function create_shortcuts() {
             continue
         }
         
-        New-Item -ItemType Directory -Force -Path $AppTargetFolder | Out-Null
+        if ($PSCmdlet.ShouldProcess($AppTargetFolder, "Create shortcut directory")) {
+            New-Item -ItemType Directory -Force -Path $AppTargetFolder | Out-Null
+        }
 
         # Check if a shortcut pointing to the same target path already exists in Start Menu
         if ($ExistingShortcutTargets.ContainsKey($App.FullName)) {
@@ -91,9 +92,7 @@ function create_shortcuts() {
         
         # Create a shortcut for each executable found
         $ShortcutPath = Join-Path $AppTargetFolder "$($App.BaseName).lnk"
-        if ($DryRun) {
-            Write-Host "Would create: $ShortcutPath -> $($App.FullName)" -ForegroundColor Green
-        } else {
+        if ($PSCmdlet.ShouldProcess($ShortcutPath, "Create shortcut targeting $($App.FullName)")) {
             $Shortcut = $WshShell.CreateShortcut($ShortcutPath)
             $Shortcut.TargetPath = $App.FullName
             $Shortcut.WorkingDirectory = $App.DirectoryName

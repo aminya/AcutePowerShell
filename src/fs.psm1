@@ -46,7 +46,13 @@ function br {
 }
 Export-ModuleMember -Function br
 
-function rm_empty_folders($path = ".") {
+function rm_empty_folders {
+    [CmdletBinding(SupportsShouldProcess)]
+    param(
+        [Parameter(Position = 0)]
+        [string]$path = "."
+    )
+
     # Get all directories recursively, excluding .git folders
     $directories = Get-ChildItem -Path $path -Directory -Recurse -Force | Where-Object { $_.Name -ne ".git" }
 
@@ -56,12 +62,21 @@ function rm_empty_folders($path = ".") {
     # Display results and delete empty folders
     if ($emptyDirectories.Count -gt 0) {
         Write-Host "Found $($emptyDirectories.Count) empty folder(s):" -ForegroundColor Yellow
+        $deletedCount = 0
         $emptyDirectories | ForEach-Object {
             $relativePath = $_.FullName | Resolve-Path -Relative
-            Write-Host "Deleting: $relativePath"
-            Remove-Item $_.FullName -Force -Recurse
+            if ($PSCmdlet.ShouldProcess($_.FullName, "Remove empty folder")) {
+                Write-Host "Deleting: $relativePath"
+                Remove-Item $_.FullName -Force -Recurse
+                $deletedCount++
+            }
         }
-        Write-Host "Successfully deleted $($emptyDirectories.Count) empty folder(s)" -ForegroundColor Green
+
+        if ($deletedCount -gt 0) {
+            Write-Host "Successfully deleted $deletedCount empty folder(s)" -ForegroundColor Green
+        } elseif (-not $WhatIfPreference) {
+            Write-Host "No empty folders were deleted." -ForegroundColor Yellow
+        }
     }
     else {
         Write-Host "No empty folders found in the current directory and subdirectories." -ForegroundColor Green
