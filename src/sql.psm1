@@ -36,7 +36,35 @@ function truncate_wal {
     }
 
     Write-Host "Discovering database files with rg..." -ForegroundColor Yellow
-    $rgResults = @(& rg --files --no-ignore --hidden --glob '*.db' --glob '*.sqlite' --glob '*.sqlite3' -- $DirectoryPath 2>&1)
+    $rgResults = @(
+        & rg `
+            --max-depth 3 `
+            --files `
+            --hidden `
+            --glob '*.db' `
+            --glob '*.sqlite' `
+            --glob '*.sqlite3' `
+            --glob '!node_modules/**' `
+            --glob '!target/**' `
+            --glob '!build/**' `
+            --glob '!dist/**' `
+            --glob '!out/**' `
+            --glob '!.cache/**' `
+            --glob '!.git/**' `
+            --glob '!.venv/**' `
+            --glob '!venv/**' `
+            --glob '!__pycache__/**' `
+            --glob '!.tox/**' `
+            --glob '!.mypy_cache/**' `
+            --glob '!.pytest_cache/**' `
+            --glob '!.ruff_cache/**' `
+            --glob '!coverage/**' `
+            --glob '!.next/**' `
+            --glob '!.turbo/**' `
+            --glob '!bower_components/**' `
+            -- $DirectoryPath 2>&1
+    )
+    Write-Output $rgResults
     $rgExitCode = $LASTEXITCODE
 
     if ($rgExitCode -gt 1) {
