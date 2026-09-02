@@ -1,10 +1,3 @@
-
-# https://www.powershellgallery.com/packages/modern-unix-win/
-if (!(Get-Module -ListAvailable -Name modern-unix-win)) {
-    Install-Module -Name modern-unix-win
-}
-Import-Module -Name modern-unix-win
-
 # https://www.powershellgallery.com/packages/gsudo/ (gsudo, sudo)
 # install via choco
 if (!(Get-Command sudo -ErrorAction SilentlyContinue)) {
