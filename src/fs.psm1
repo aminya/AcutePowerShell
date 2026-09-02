@@ -27,25 +27,6 @@ function dump_bin($file) {
 }
 Export-ModuleMember -Function dump_bin
 
-# broot extension
-function br {
-    $outcmd = new-temporaryfile
-    broot.exe --outcmd $outcmd $args
-    if (!$?) {
-        remove-item -force $outcmd
-        return $lastexitcode
-    }
-
-    $command = get-content $outcmd
-    if ($command) {
-        # workaround - paths have some garbage at the start
-        $command = $command.replace("\\?\", "", 1)
-        invoke-expression $command
-    }
-    remove-item -force $outcmd
-}
-Export-ModuleMember -Function br
-
 function rm_empty_folders {
     [CmdletBinding(SupportsShouldProcess)]
     param(
