@@ -1,3 +1,13 @@
+# Enable toolchain modules
+Import-Module -Name $PSScriptRoot/src/msvc.psm1 -DisableNameChecking
+
+enable_msvc_2022
+
+# if a dumb terminal, exit
+if ($env:TERM -eq 'dumb') {
+    return
+}
+
 Import-Module -Name $PSScriptRoot/src/ai.psm1 -DisableNameChecking
 Import-Module -Name $PSScriptRoot/src/cmake.psm1 -DisableNameChecking
 Import-Module -Name $PSScriptRoot/src/docker.psm1 -DisableNameChecking
@@ -5,7 +15,6 @@ Import-Module -Name $PSScriptRoot/src/exec.psm1 -DisableNameChecking
 Import-Module -Name $PSScriptRoot/src/fs.psm1 -DisableNameChecking
 Import-Module -Name $PSScriptRoot/src/git.psm1 -DisableNameChecking
 Import-Module -Name $PSScriptRoot/src/media.psm1 -DisableNameChecking
-Import-Module -Name $PSScriptRoot/src/msvc.psm1 -DisableNameChecking
 Import-Module -Name $PSScriptRoot/src/network.psm1 -DisableNameChecking
 Import-Module -Name $PSScriptRoot/src/object.psm1 -DisableNameChecking
 Import-Module -Name $PSScriptRoot/src/path.psm1 -DisableNameChecking

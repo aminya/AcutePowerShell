@@ -41,8 +41,6 @@ function enable_msvc_2022() {
 }
 Export-ModuleMember -Function enable_msvc_2022
 
-enable_msvc_2022
-
 function enable_msvc_18() {
     enable_msvc 18
 }
