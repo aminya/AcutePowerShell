@@ -11,7 +11,6 @@ Import-Module -Name $PSScriptRoot/src/msvc.psm1 -DisableNameChecking
 Import-Module -Name $PSScriptRoot/src/ai.psm1 -DisableNameChecking
 Import-Module -Name $PSScriptRoot/src/cmake.psm1 -DisableNameChecking
 Import-Module -Name $PSScriptRoot/src/docker.psm1 -DisableNameChecking
-Import-Module -Name $PSScriptRoot/src/exec.psm1 -DisableNameChecking
 Import-Module -Name $PSScriptRoot/src/fs.psm1 -DisableNameChecking
 Import-Module -Name $PSScriptRoot/src/git.psm1 -DisableNameChecking
 Import-Module -Name $PSScriptRoot/src/media.psm1 -DisableNameChecking
