@@ -23,7 +23,7 @@ function enable_msvc($version) {
 
     & {
         Import-Module "$VS_INSTALL_PATH/Common7/Tools/Microsoft.VisualStudio.DevShell.dll";
-        $null = Enter-VsDevShell -Arch "amd64" -HostArch "amd64" -VsInstallPath "$VS_INSTALL_PATH/";
+        $null = Enter-VsDevShell -Arch "amd64" -HostArch "amd64" -VsInstallPath "$VS_INSTALL_PATH/" -SkipAutomaticLocation;
     }
     cd "$ORIG_PWD"
 
