@@ -1,5 +1,5 @@
 # if a dumb terminal, exit
-if ($env:TERM -eq 'dumb') {
+if ($env:TERM -eq 'dumb' -or $env:TERM_PROGRAM -eq 'WarpTerminal') {
     return
 }
 
