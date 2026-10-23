@@ -46,6 +46,10 @@ function truncate_wal {
             --glob '*.sqlite3' `
             --glob '!node_modules/**' `
             --glob '!target/**' `
+            --glob '!src/**' `
+            --glob '!packages/**' `
+            --glob '!docs/**' `
+            --glob '!.github/**' `
             --glob '!build/**' `
             --glob '!dist/**' `
             --glob '!out/**' `
